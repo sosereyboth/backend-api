@@ -1,0 +1,54 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: manulife
+  labels:
+    name: manulife
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-api-deploy
+  namespace: manulife
+  labels:
+    app: backend-api-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-api-deploy
+  minReadySeconds: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: backend-api-deploy
+    spec:
+      terminationGracePeriodSeconds: 1
+      containers:
+        - name: backend-api
+          image: backend-api:latest
+          imagePullPolicy: IfNotPresent  # Never or Always
+          ports:
+            - containerPort: 9192
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-api-svc
+  namespace: manulife
+spec:
+  type: NodePort
+  ports:
+    - port: 9192
+      targetPort: 9192
+      nodePort: 30002
+      protocol: TCP
+  selector:
+    app: backend-api-deploy
