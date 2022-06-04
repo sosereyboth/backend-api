@@ -1,5 +1,6 @@
 package com.sosereyboth.backendapi.controller;
 
+import com.sosereyboth.backendapi.dto.LoginResponseDto;
 import com.sosereyboth.backendapi.entity.AuthRequest;
 import com.sosereyboth.backendapi.entity.User;
 import com.sosereyboth.backendapi.repository.UserRepository;
@@ -33,7 +34,7 @@ public class WelcomeController {
     }
 
     @PostMapping("/authenticate")
-    public String generateToken(@RequestBody AuthRequest authRequest) throws Exception {
+    public ResponseEntity<LoginResponseDto> generateToken(@RequestBody AuthRequest authRequest) throws Exception {
 
         //Validate username and password.
         try {
@@ -45,8 +46,10 @@ public class WelcomeController {
         }
 
         //Generate a web token when succeeded.
-        return jwtUtil.generateToken(authRequest.getUserName());
-
+        return new ResponseEntity<>(
+                new LoginResponseDto(jwtUtil.generateToken(authRequest.getUserName()), authRequest.getUserName()),
+                HttpStatus.OK
+        );
     }
 
     @PostMapping("/register")
@@ -61,7 +64,7 @@ public class WelcomeController {
 
         try {
             String newId = UUID.randomUUID().toString();
-            User newUser = new User(newId, request.getUserName(), request.getPassword(), request.getEmail(),
+            User newUser = new User(newId,request.getFullName(), request.getUserName(), request.getPassword(), request.getEmail(),
                     request.getPhone(), request.getPhoto());
             repository.save(newUser);
         }catch (Exception ex){
