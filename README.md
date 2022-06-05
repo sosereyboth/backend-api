@@ -58,3 +58,6 @@ Now you can test this URL on the local machine to make sure it works:
 ### Step 4: Testing APIs Using Postman
 I've already put the postman testing specification in this project. The file named "PostmanTests.zip". You can unzip this file and import into the postman application.
 
+### Step 5: Testing APIs from Mobile App
+I have already built a front-end mobile application using the React-Native. To run the application, please check this document in another git repository here:
+> https://github.com/sosereyboth/RNFrontEndApp
