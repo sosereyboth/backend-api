@@ -55,3 +55,6 @@ Now you can test this URL on the local machine to make sure it works:
 > http://localhost:30002/hello
 > ```
 
+### Step 4: Testing APIs Using Postman
+I've already put the postman testing specification in this project. The file named "PostmanTests.zip". You can unzip this file and import into the postman application.
+
