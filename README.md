@@ -28,3 +28,9 @@ cd backend-api
 
 mvn clean package 
 ```
+After the process completed, a "jar" file was produced in the "target" directory in the project root folder. This .jar file is going to be used to deploy and run on the docker kubernetes.
+### Step 3: Building Docker Image
+Now it's time to build a docker image from the .jar file and store the image on docker repository. To do it, run the following command on the same terminal screen:
+```
+docker build -t backend-api:latest .
+```
