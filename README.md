@@ -34,3 +34,14 @@ Now it's time to build a docker image from the .jar file and store the image on 
 ```
 docker build -t backend-api:latest .
 ```
+When the process done, you can verify that image by running this command:
+```
+docker images
+```
+Then you'll see the image named "backend-api" with the tag "latest". We will use this image to deploy on the kubernetes shortly.
+
+### Step 3: Deploying on Kubernetes
+Under the "backend-api" folder on your terminal screen, you can view the file named "deploy.yaml". This file is the Kubernetes deployment script. To deploy our application on the Kubernetes, run the following command line on your terminal screen:
+```
+kubectl apply -f deploy.yaml
+```
