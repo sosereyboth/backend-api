@@ -49,4 +49,4 @@ Now you can verify your application running on the kubernetes using this command
 ```
 kubectl get all -n manulife
 ```
-Then you will see the service named "service/backend-api-svc" which running on the port "30002". This port number is accessible from the outside Kubernetes cluster which means you can access your back-end application from the client browser or postman through this port "30002".
+Then you will see the service named "service/backend-api-svc" which running on the port "30002". This port number is accessible from the outside of Kubernetes cluster. this means you can access your back-end application from the client browser or postman through this port "30002".
